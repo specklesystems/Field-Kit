@@ -1,8 +1,10 @@
 # Shared FieldKit skills
 
-A skill is a reusable procedure: instructions for doing a kind of work, not a
-persona and not a job title. Each skill has a `SKILL.md` written in the open
-Agent Skills shape so it remains readable with or without special tooling.
+A skill here is a reusable **way of working**: instructions for how an agent
+approaches a kind of work, not a persona, job title or organisation-specific
+definition of correctness. Each skill has `kind: way-of-working` and
+`scope: general` in its `SKILL.md` so that distinction remains human-readable
+even when a client ignores custom metadata.
 
 FieldKit starts with four small skills:
 
@@ -17,5 +19,6 @@ Clients differ in automatic skill discovery. The portable fallback is simply:
 
 Keep shared skills generic, public-safe and useful to more than one project.
 Personal material belongs in `personal/` and project-specific rules belong in
-the child repository.
+the child repository. Organisation, project, contract or jurisdiction rules
+belong in a separately owned [`practice-pack`](../practice-packs/README.md).
 

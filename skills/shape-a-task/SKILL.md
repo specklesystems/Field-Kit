@@ -1,6 +1,8 @@
 ---
 name: shape-a-task
 description: Turn an intended outcome into a small, testable coding task.
+kind: way-of-working
+scope: general
 ---
 
 # Shape a task

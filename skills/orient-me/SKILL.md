@@ -1,6 +1,8 @@
 ---
 name: orient-me
 description: Map an unfamiliar repository before proposing or making changes.
+kind: way-of-working
+scope: general
 ---
 
 # Orient me

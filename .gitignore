@@ -6,6 +6,10 @@
 /personal/*
 !/personal/README.md
 
+# Organisation and project practice packs are independent, often private repos
+/practice-packs/*
+!/practice-packs/README.md
+
 # Local configuration and common generated files
 .env
 .env.*

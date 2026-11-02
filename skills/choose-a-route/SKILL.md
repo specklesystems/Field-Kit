@@ -1,6 +1,8 @@
 ---
 name: choose-a-route
 description: Choose the lightest safe way to build a Speckle workflow before selecting tools.
+kind: way-of-working
+scope: general
 ---
 
 # Choose a route

@@ -41,3 +41,18 @@ Skills in `skills/` are reusable procedures. Read the relevant `SKILL.md` in
 full when a participant names it or the task clearly matches it. The
 `personal/` folder is private staging, not a promise of automatic discovery.
 
+## Ways of working and practice packs
+
+- A skill with `kind: way-of-working` controls how work is approached. It does
+  not define organisation, project, contractual or jurisdictional truth.
+- A practice pack under `practice-packs/` defines scoped domain practice. Read
+  its `PACK.md` before using any skill inside it.
+- Apply a practice pack only when its declared scope matches the current task.
+  If multiple packs might apply, their authority is unclear, or their rules
+  conflict, stop and surface the ambiguity rather than choosing silently.
+- Law, safety and non-negotiable repository constraints are absolute bounds.
+  Within them, binding project or contract requirements take priority over
+  organisation conventions; explicit participant requests apply only within
+  those bounds. General ways of working fill gaps but never override scoped
+  practice.
+

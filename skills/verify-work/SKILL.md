@@ -1,6 +1,8 @@
 ---
 name: verify-work
 description: Verify a change proportionately and report evidence and gaps.
+kind: way-of-working
+scope: general
 ---
 
 # Verify work

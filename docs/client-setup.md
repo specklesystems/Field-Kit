@@ -28,6 +28,11 @@ The dependable cross-client behaviour is plain files plus an explicit request:
   To make it automatically discoverable, install it using the current
   documentation for your chosen client. Otherwise reference its path directly.
 
+Organisation or project practice belongs in a separately versioned repository
+under `practice-packs/`. Make the applicable pack available to the client, then
+reference its `PACK.md` and named skill explicitly. Do not assume a client has
+discovered a private pack, and do not apply one merely because it is present.
+
 Do not duplicate a shared skill into every client folder unless the client
 requires it; copies drift. Prefer one readable source and explicit invocation.
 

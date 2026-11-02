@@ -68,7 +68,8 @@ Field-Kit/                  ← the parent harness (this Git repository)
 ├── AGENTS.md               ← instructions every task should inherit
 ├── fieldkit.json           ← catalogue of approved public projects
 ├── context/                ← short maps of those projects
-├── skills/                 ← reusable ways of doing common work
+├── skills/                 ← public, portable ways of working
+├── practice-packs/         ← scoped organisation/project rules
 ├── personal/               ← your private, uncommitted material
 └── projects/               ← independent child Git repositories
     ├── speckle-bundle-spec/
@@ -155,14 +156,35 @@ Think from broad to specific:
 2. **Project instructions** — a child repository may have its own
    `AGENTS.md`, README or contributor guide. The nearer instructions describe
    that codebase and should win when they do not conflict with safety.
-3. **Shared skills** — [`skills/`](skills/README.md) contains committed,
-   reusable procedures anyone may use.
-4. **Personal skills** — [`personal/`](personal/README.md) is a private staging
+3. **Ways-of-working skills** — [`skills/`](skills/README.md) contains public,
+   portable procedures for how an agent approaches work.
+4. **Practice packs** — [`practice-packs/`](practice-packs/README.md) contains
+   separately owned rules for what a correct result means in an organisation,
+   project or jurisdiction.
+5. **Personal skills** — [`personal/`](personal/README.md) is a private staging
    area for your own patterns. It is ignored by Git and is **not** guaranteed
    to be discovered automatically by every client.
 
 `AGENTS.md` is the durable briefing. A skill is a procedure you invoke when it
 is relevant. Neither is a magic prompt that makes an agent infallible.
+
+## Ways of working are not organisational practice
+
+FieldKit keeps two different kinds of agent knowledge separate:
+
+| Kind | Question it answers | Example |
+|---|---|---|
+| **Way of working** | How should the agent approach this kind of work? | Orient before editing; choose the lightest safe route; verify before completion |
+| **Practice pack** | What does correct mean in this particular setting? | How an organisation measures areas and quantities; a project's classification rules; a jurisdiction's reporting convention |
+
+A general skill must not invent an organisation's measurement method. A
+practice pack must not present a local convention as universal Speckle
+behaviour.
+
+Real practice packs are independent child repositories, often private, under
+`practice-packs/`. FieldKit ignores their contents just as it ignores project
+checkouts. Start from [`templates/practice-pack/`](templates/practice-pack/),
+then give the pack a named owner, scope, authority, version and evidence.
 
 ## Four useful skills to begin with
 
@@ -215,6 +237,8 @@ repository: they have separate histories and separate destinations.
 - [Client setup](docs/client-setup.md) — how to use the common layer without
   pretending every agent behaves identically.
 - [Safe working](docs/safe-working.md) — data, secrets and publication checks.
+- [Practice packs](practice-packs/README.md) — scoped organisation and project
+  knowledge.
 - [Project catalogue](fieldkit.json) — the machine-readable public allow-list.
 - [Project maps](context/README.md) — where to start in each codebase.
 
