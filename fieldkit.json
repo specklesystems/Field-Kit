@@ -1,5 +1,35 @@
 {
-  "version": 1,
+  "version": 2,
+  "groups": {
+    "core": [
+      "bundle-spec",
+      "python-sdk",
+      "dotnet-sdk",
+      "automate-python",
+      "automate-dotnet",
+      "automate-typescript",
+      "docs"
+    ],
+    "foundations": [
+      "bundle-spec",
+      "python-sdk",
+      "dotnet-sdk",
+      "docs"
+    ],
+    "automate": [
+      "automate-python",
+      "automate-dotnet",
+      "automate-typescript"
+    ],
+    "connectors": [
+      "sharp-connectors",
+      "connectors-ui",
+      "archicad-connector",
+      "sketchup-connector",
+      "powerbi-connector",
+      "blender-connector"
+    ]
+  },
   "projects": {
     "bundle-spec": {
       "directory": "speckle-bundle-spec",
@@ -35,6 +65,36 @@
       "directory": "speckle-docs-NEW",
       "url": "https://github.com/specklesystems/speckle-docs-NEW.git",
       "purpose": "Speckle's public product documentation."
+    },
+    "sharp-connectors": {
+      "directory": "speckle-sharp-connectors",
+      "url": "https://github.com/specklesystems/speckle-sharp-connectors.git",
+      "purpose": "Speckle's .NET host connectors, including shared connector logic."
+    },
+    "connectors-ui": {
+      "directory": "speckle-connectors-dui",
+      "url": "https://github.com/specklesystems/speckle-connectors-dui.git",
+      "purpose": "The shared web interface used across Speckle connectors."
+    },
+    "archicad-connector": {
+      "directory": "speckle-archicad",
+      "url": "https://github.com/specklesystems/speckle-archicad.git",
+      "purpose": "Speckle's Archicad connector."
+    },
+    "sketchup-connector": {
+      "directory": "speckle-sketchup",
+      "url": "https://github.com/specklesystems/speckle-sketchup.git",
+      "purpose": "Speckle's SketchUp connector."
+    },
+    "powerbi-connector": {
+      "directory": "speckle-powerbi",
+      "url": "https://github.com/specklesystems/speckle-powerbi.git",
+      "purpose": "Speckle's Power BI connector."
+    },
+    "blender-connector": {
+      "directory": "speckle-blender",
+      "url": "https://github.com/specklesystems/speckle-blender.git",
+      "purpose": "Speckle's Blender connector."
     }
   }
 }

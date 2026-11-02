@@ -120,17 +120,31 @@ FieldKit deliberately starts with a small public surface:
 | `automate-typescript` | `specklesystems/speckleAutomateTypescriptTemplate` | Start a TypeScript Automate function |
 | `docs` | `specklesystems/speckle-docs-NEW` | Find and improve public product guidance |
 
+FieldKit also treats the active public connector family as first-class:
+
+| FieldKit name | Public repository | Scope |
+|---|---|---|
+| `sharp-connectors` | `specklesystems/speckle-sharp-connectors` | .NET host connectors and shared connector logic |
+| `connectors-ui` | `specklesystems/speckle-connectors-dui` | Shared connector web interface |
+| `archicad-connector` | `specklesystems/speckle-archicad` | Archicad |
+| `sketchup-connector` | `specklesystems/speckle-sketchup` | SketchUp |
+| `powerbi-connector` | `specklesystems/speckle-powerbi` | Power BI |
+| `blender-connector` | `specklesystems/speckle-blender` | Blender |
+
 List or check them out with:
 
 ```sh
 python3 tools/fieldkit.py list
 python3 tools/fieldkit.py checkout automate-python
+python3 tools/fieldkit.py resolve connectors
+python3 tools/fieldkit.py checkout --group connectors
 python3 tools/fieldkit.py checkout --core
 ```
 
-`--core` checks out Bundle Spec, both SDKs, all three Automate starters and
-docs. It can take time and disk space; checking out one project is often the
-better workshop choice.
+`--core` remains the stable original set: Bundle Spec, both SDKs, all three
+Automate starters and docs. Connector repositories are opt-in because the
+complete family can take time and disk space. Check out only the repository
+that owns your task when possible.
 
 ## How the context layers work
 
