@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "projects": {
+    "bundle-spec": {
+      "directory": "speckle-bundle-spec",
+      "url": "https://github.com/specklesystems/speckle-bundle-spec.git",
+      "purpose": "The executable specification for the Speckle bundle format."
+    },
+    "python-sdk": {
+      "directory": "specklepy",
+      "url": "https://github.com/specklesystems/specklepy.git",
+      "purpose": "Speckle's public Python SDK."
+    },
+    "dotnet-sdk": {
+      "directory": "speckle-sharp-sdk",
+      "url": "https://github.com/specklesystems/speckle-sharp-sdk.git",
+      "purpose": "Speckle's public .NET SDK."
+    },
+    "automate-python": {
+      "directory": "speckle_automate_python_example",
+      "url": "https://github.com/specklesystems/speckle_automate_python_example.git",
+      "purpose": "A public Python starter for Speckle Automate functions."
+    },
+    "automate-dotnet": {
+      "directory": "SpeckleAutomateDotnetExample",
+      "url": "https://github.com/specklesystems/SpeckleAutomateDotnetExample.git",
+      "purpose": "A public .NET starter for Speckle Automate functions."
+    },
+    "automate-typescript": {
+      "directory": "speckleAutomateTypescriptTemplate",
+      "url": "https://github.com/specklesystems/speckleAutomateTypescriptTemplate.git",
+      "purpose": "A public TypeScript starter for Speckle Automate functions."
+    },
+    "docs": {
+      "directory": "speckle-docs-NEW",
+      "url": "https://github.com/specklesystems/speckle-docs-NEW.git",
+      "purpose": "Speckle's public product documentation."
+    }
+  }
+}

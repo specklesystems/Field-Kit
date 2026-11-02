@@ -1,0 +1,16 @@
+# FieldKit-managed child repositories
+/projects/*
+!/projects/README.md
+
+# Personal material stays on this machine
+/personal/*
+!/personal/README.md
+
+# Local configuration and common generated files
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
+*.pyc
+
