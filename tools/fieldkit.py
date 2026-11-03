@@ -108,7 +108,7 @@ def doctor(
         checks.append((name, ready, detail, True))
 
     mcp = projects_dir / "fieldkit-admin-mcp"
-    mcp_checkout = (mcp / ".git").exists()
+    mcp_checkout = (mcp / "package.json").is_file()
     mcp_built = (mcp / "dist" / "index.js").exists()
     mcp_dependencies = (mcp / "node_modules").is_dir()
     token_configured = _has_local_token(root)

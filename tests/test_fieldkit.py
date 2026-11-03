@@ -54,7 +54,9 @@ class FieldKitDoctorTests(unittest.TestCase):
             projects = root / "projects"
             for name in fieldkit.WORKSHOP_PROJECTS:
                 (projects / name / ".git").mkdir(parents=True)
-            (projects / "fieldkit-admin-mcp" / ".git").mkdir(parents=True)
+            mcp = projects / "fieldkit-admin-mcp"
+            mcp.mkdir(parents=True)
+            (mcp / "package.json").write_text("{}", encoding="utf-8")
             ready, output = self.run_doctor(root, projects)
             self.assertTrue(ready)
             self.assertIn("FieldKit MCP checkout [optional]: present", output)

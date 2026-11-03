@@ -1,0 +1,33 @@
+{
+  "name": "fieldkit-admin-mcp",
+  "version": "0.3.0",
+  "description": "FieldKit Admin + Data MCP for Speckle administration and data investigation, separate from the official Speckle MCP.",
+  "type": "module",
+  "bin": {
+    "fieldkit-admin-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "tsx --test tests/*.test.ts",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "dev": "node --env-file-if-exists=.env --import tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@duckdb/node-api": "^1.5.4-r.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}

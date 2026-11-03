@@ -1,0 +1,7 @@
+.env
+mise.local.toml
+mise.*.local.toml
+.DS_Store
+node_modules/
+*.mcpb
+.git.nested-backup/

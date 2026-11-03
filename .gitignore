@@ -1,6 +1,8 @@
 # FieldKit-managed child repositories
 /projects/*
 !/projects/README.md
+!/projects/fieldkit-admin-mcp/
+!/projects/fieldkit-admin-mcp/**
 
 # Personal material stays on this machine
 /personal/*

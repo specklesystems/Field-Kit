@@ -1,0 +1,48 @@
+{
+  "manifest_version": "0.3",
+  "name": "fieldkit-admin-mcp",
+  "display_name": "FieldKit Admin + Data MCP",
+  "version": "0.3.0",
+  "description": "Local FieldKit companion for Speckle administration and data investigation. Separate from the official Speckle MCP.",
+  "long_description": "Talks directly to one Speckle Server's GraphQL API using a personal access token. Covers the workspace -> projects -> models/versions -> content hierarchy: workspace/project/user administration, real usage signals (get_workspace_activity, get_contribution_rollup, get_project_team), dashboards and data-validation checks (list_project_insights, get_insight_results), per-version model-data analytics against the same EAV/packfile datasets Speckle's own AI feature uses, and support-case file intake (create_support_project, upload_file_to_project, get_file_import_status) — upload a customer's native Revit/Rhino/IFC/etc file straight into a dedicated project via Speckle's server-side importer, no connector or CAD license needed. Write tools (role changes, deletion, server config, support project/upload) are off by default behind SPECKLE_ADMIN_ALLOW_WRITES.",
+  "author": {
+    "name": "Jonathon Broughton"
+  },
+  "license": "MIT",
+  "keywords": ["speckle", "admin", "graphql", "workspace", "customer-success"],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {
+        "SPECKLE_SERVER_URL": "${user_config.server_url}",
+        "SPECKLE_TOKEN": "${user_config.token}",
+        "SPECKLE_ADMIN_ALLOW_WRITES": "${user_config.allow_writes}"
+      }
+    }
+  },
+  "user_config": {
+    "server_url": {
+      "type": "string",
+      "title": "Speckle Server URL",
+      "description": "Base URL of the Speckle Server to administer, e.g. https://app.speckle.systems (no trailing slash).",
+      "required": true
+    },
+    "token": {
+      "type": "string",
+      "title": "Personal Access Token",
+      "description": "PAT from Profile -> Settings -> Developer settings -> Personal access tokens. Needs profile:read, users:read, users:invite, server:setup scopes (add streams:write too for support-case file intake).",
+      "sensitive": true,
+      "required": true
+    },
+    "allow_writes": {
+      "type": "string",
+      "title": "Allow write operations",
+      "description": "Set to \"true\" to enable mutation tools (role changes, user deletion, server config updates, invites). Leave as \"false\" for read-only.",
+      "default": "false",
+      "required": false
+    }
+  }
+}
