@@ -24,15 +24,19 @@ including agent skill discovery, use the
 [`workshop quick start`](docs/workshop-quick-start.md). It does not require
 Python.
 
+For a bounded first exercise, choose one of the
+[`nine 45-minute challenges`](docs/45-minute-challenges.md): three each for
+ASK, BUILD and DELEGATE.
+
 ```sh
 git clone https://github.com/specklesystems/Field-Kit.git
 cd Field-Kit
 python3 tools/fieldkit.py setup
 ```
 
-`setup` safely checks out the minimum public analysis foundations—Bundle
-specification, Python SDK and documentation—without updating or overwriting an
-existing child repository. It then runs the read-only readiness report. Run
+`setup` safely checks out the workshop foundations—Bundle specification,
+Python SDK, documentation and the Python Automate starter—without updating or
+overwriting an existing child repository. It then runs the read-only readiness report. Run
 that report again at any time with:
 
 ```sh
@@ -385,6 +389,8 @@ repository: they have separate histories and separate destinations.
   pretending every agent behaves identically.
 - [Workshop quick start](docs/workshop-quick-start.md) — the exact on-screen
   clone, child-repository and agent instructions.
+- [45-minute challenges](docs/45-minute-challenges.md) — nine ready-to-paste
+  ASK, BUILD and DELEGATE prompts with valid fallback finishes.
 - [Safe working](docs/safe-working.md) — data, secrets and publication checks.
 - [Practice packs](practice-packs/README.md) — scoped organisation and project
   knowledge.

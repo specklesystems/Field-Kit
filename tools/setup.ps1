@@ -43,5 +43,6 @@ function Add-RepositoryIfMissing(
 Add-RepositoryIfMissing "Bundle specification" "https://github.com/specklesystems/speckle-bundle-spec.git" "speckle-bundle-spec"
 Add-RepositoryIfMissing "Python SDK" "https://github.com/specklesystems/specklepy.git" "specklepy"
 Add-RepositoryIfMissing "Speckle documentation" "https://github.com/specklesystems/speckle-docs-NEW.git" "speckle-docs-NEW"
+Add-RepositoryIfMissing "Python Automate starter" "https://github.com/specklesystems/speckle_automate_python_example.git" "speckle_automate_python_example"
 
 Write-Host "FieldKit foundations are ready. Open this folder in your coding agent: ${Root}"

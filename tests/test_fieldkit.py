@@ -24,7 +24,7 @@ ANALYSIS_SPEC.loader.exec_module(new_analysis)
 def fake_projects():
     return {
         name: {"directory": name, "url": f"https://example.test/{name}.git", "purpose": name}
-        for name in fieldkit.ANALYSIS_FOUNDATIONS
+        for name in fieldkit.WORKSHOP_PROJECTS
     }
 
 
@@ -52,7 +52,7 @@ class FieldKitDoctorTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             projects = root / "projects"
-            for name in fieldkit.ANALYSIS_FOUNDATIONS:
+            for name in fieldkit.WORKSHOP_PROJECTS:
                 (projects / name / ".git").mkdir(parents=True)
             (projects / "fieldkit-admin-mcp" / ".git").mkdir(parents=True)
             ready, output = self.run_doctor(root, projects)
@@ -79,7 +79,7 @@ class FieldKitDoctorTests(unittest.TestCase):
                 self.assertTrue(fieldkit.setup(fake_projects(), root=root, projects_dir=projects))
                 self.assertEqual(
                     [call.args[0] for call in checkout.call_args_list],
-                    list(fieldkit.ANALYSIS_FOUNDATIONS),
+                    list(fieldkit.WORKSHOP_PROJECTS),
                 )
                 doctor.assert_called_once_with(fake_projects(), root=root, projects_dir=projects)
 
@@ -135,6 +135,7 @@ class AnalysisScaffoldTests(unittest.TestCase):
 class WorkshopSetupScriptTests(unittest.TestCase):
     def test_shell_setup_has_safe_existing_path_and_origin_guards(self):
         script = (Path(__file__).parents[1] / "tools" / "setup.sh").read_text(encoding="utf-8")
+        self.assertIn("speckle_automate_python_example", script)
         self.assertIn('[ -L "$target" ]', script)
         self.assertIn('[ ! -d "$target/.git" ]', script)
         self.assertIn('remote get-url origin', script)
@@ -143,6 +144,7 @@ class WorkshopSetupScriptTests(unittest.TestCase):
 
     def test_powershell_setup_has_safe_existing_path_and_origin_guards(self):
         script = (Path(__file__).parents[1] / "tools" / "setup.ps1").read_text(encoding="utf-8")
+        self.assertIn("speckle_automate_python_example", script)
         self.assertIn('$Item.LinkType', script)
         self.assertIn('remote get-url origin', script)
         self.assertNotIn('git pull', script)

@@ -41,5 +41,6 @@ clone_if_missing() {
 clone_if_missing "Bundle specification" "https://github.com/specklesystems/speckle-bundle-spec.git" "speckle-bundle-spec"
 clone_if_missing "Python SDK" "https://github.com/specklesystems/specklepy.git" "specklepy"
 clone_if_missing "Speckle documentation" "https://github.com/specklesystems/speckle-docs-NEW.git" "speckle-docs-NEW"
+clone_if_missing "Python Automate starter" "https://github.com/specklesystems/speckle_automate_python_example.git" "speckle_automate_python_example"
 
 echo "FieldKit foundations are ready. Open this folder in your coding agent: $ROOT"

@@ -1,7 +1,7 @@
 # Workshop quick start — type exactly this
 
-These commands clone FieldKit and place the Bundle specification, Python SDK
-and documentation inside its `projects/` folder. The setup scripts download
+These commands clone FieldKit and place the Bundle specification, Python SDK,
+documentation and Python Automate starter inside its `projects/` folder. The setup scripts download
 repository contents only through `git clone`; they do not download and execute
 remote setup code, pull existing repositories or overwrite existing paths.
 
@@ -73,6 +73,9 @@ This verifies file access. It cannot prove that a model will follow every
 instruction, so keep consequential permissions and changes human-reviewed.
 
 ## Start an action
+
+If you want a complete starter challenge rather than writing your own prompt,
+choose from [`45-minute-challenges.md`](45-minute-challenges.md).
 
 ASK:
 

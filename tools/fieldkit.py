@@ -15,7 +15,7 @@ from typing import Dict, List, Tuple
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "fieldkit.json"
 PROJECTS = ROOT / "projects"
-ANALYSIS_FOUNDATIONS = ("bundle-spec", "python-sdk", "docs")
+WORKSHOP_PROJECTS = ("bundle-spec", "python-sdk", "docs", "automate-python")
 
 
 def catalogue() -> Tuple[Dict[str, Dict[str, str]], Dict[str, List[str]]]:
@@ -101,7 +101,7 @@ def doctor(
     mise_ok, mise_detail = _tool_status("mise")
     checks.append(("mise", mise_ok, mise_detail, False))
 
-    for name in ANALYSIS_FOUNDATIONS:
+    for name in WORKSHOP_PROJECTS:
         target = projects_dir / projects[name]["directory"]
         ready = (target / ".git").exists()
         detail = str(target.relative_to(root)) if ready else "not checked out"
@@ -140,7 +140,7 @@ def setup(
     """Install only missing analysis foundations, then run the read-only doctor."""
     projects_dir.mkdir(exist_ok=True)
     checked_out = all(
-        checkout(name, projects[name], projects_dir) for name in ANALYSIS_FOUNDATIONS
+        checkout(name, projects[name], projects_dir) for name in WORKSHOP_PROJECTS
     )
     return checked_out and doctor(projects, root=root, projects_dir=projects_dir)
 
@@ -158,7 +158,7 @@ def main() -> int:
     get.add_argument("--core", action="store_true", help="check out the stable core group")
     sub.add_parser(
         "setup",
-        help="check out the minimum Bundle/SDK/docs sources for model-data investigation, then run doctor",
+        help="check out the Bundle, SDK, docs and Automate workshop foundations, then run doctor",
     )
     sub.add_parser("doctor", help="report local readiness without changing anything")
     args = parser.parse_args()
