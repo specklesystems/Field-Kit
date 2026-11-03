@@ -1,21 +1,42 @@
 # Using FieldKit with coding agents
 
+For the copyable workshop commands, start with
+[`workshop-quick-start.md`](workshop-quick-start.md).
+
 Open the FieldKit root as the workspace so the parent context and child
 projects are both visible. Keep expectations conservative: clients evolve and
 do not discover every instruction or skill in exactly the same way.
 
 | Client | Portable starting point |
 |---|---|
-| Codex | Open FieldKit, ask it to read `AGENTS.md`, and name a `SKILL.md` when needed. |
-| Cursor | Open FieldKit as the project; explicitly reference `AGENTS.md` or a skill if it is not picked up. |
-| GitHub Copilot | Work in the FieldKit workspace and explicitly attach or reference the relevant instruction and skill files. |
-| Claude Code | Start in FieldKit; ask it to read `AGENTS.md` and the relevant child instructions. |
-| Claude Cowork | Give it the FieldKit folder and explicitly point it to the active project and skill. |
+| Codex | Open FieldKit; it reads `AGENTS.md` and discovers repository skills from `.agents/skills/`. |
+| Cursor | Open FieldKit; root `AGENTS.md` persists, while skills should be explicitly referenced or attached. |
+| GitHub Copilot | Open FieldKit; supported agents use `.github/copilot-instructions.md` and discover `.agents/skills/`. |
+| Claude Code | Start in FieldKit; `CLAUDE.md` persists and points to the canonical `.agents/skills/` paths. |
+| Claude Cowork | Select FieldKit as the local project folder and add the folder instruction from the quick start. |
 
 The dependable cross-client behaviour is plain files plus an explicit request:
 
 > Work in `projects/specklepy`. Read the applicable instructions and follow
-> `skills/orient-me/SKILL.md`. Do not make changes yet.
+> `.agents/skills/orient-me/SKILL.md`. Do not make changes yet.
+
+For a model-data question, use the portable bootstrap prompt:
+
+> Read `AGENTS.md` and follow
+> `.agents/skills/ask-speckle/SKILL.md`. Start read-only, inspect the
+> actual model/version and available dataset before choosing SQL, an SDK,
+> connector source or Automate. Apply no project or regulatory rule unless an
+> applicable practice pack or governing source has been supplied.
+
+For building or delegating, replace that path with
+`.agents/skills/build-with-speckle/SKILL.md` or
+`.agents/skills/delegate-with-speckle/SKILL.md`. These are independent choices, not a
+required sequence.
+
+`CLAUDE.md` and `.github/copilot-instructions.md` are short client-native
+pointers to the same shared instructions. Cowork does not have a repository
+instruction convention FieldKit can rely on, so use the bootstrap prompt
+explicitly. These entry points intentionally do not duplicate the skill.
 
 ## Global, shared and personal
 

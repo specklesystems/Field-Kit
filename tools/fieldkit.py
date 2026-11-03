@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""List and check out FieldKit's allow-listed public Speckle projects."""
+"""Set up, inspect and check out FieldKit's allow-listed public projects."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -13,6 +15,7 @@ from typing import Dict, List, Tuple
 ROOT = Path(__file__).resolve().parents[1]
 CATALOGUE = ROOT / "fieldkit.json"
 PROJECTS = ROOT / "projects"
+ANALYSIS_FOUNDATIONS = ("bundle-spec", "python-sdk", "docs")
 
 
 def catalogue() -> Tuple[Dict[str, Dict[str, str]], Dict[str, List[str]]]:
@@ -41,10 +44,15 @@ def show(projects: Dict[str, Dict[str, str]]) -> None:
         print(f"{name:<{width}}  {state:<11}  {project['purpose']}")
 
 
-def checkout(name: str, project: Dict[str, str]) -> bool:
-    target = PROJECTS / project["directory"]
+def checkout(name: str, project: Dict[str, str], projects_dir: Path = PROJECTS) -> bool:
+    """Clone one missing project without updating or modifying existing paths."""
+    target = projects_dir / project["directory"]
     if (target / ".git").exists():
-        print(f"✓ {name}: already checked out at {target.relative_to(ROOT)}")
+        try:
+            display_target = target.relative_to(ROOT)
+        except ValueError:
+            display_target = target
+        print(f"✓ {name}: already checked out at {display_target}")
         return True
     if target.exists():
         print(f"✗ {name}: {target} exists but is not a Git checkout", file=sys.stderr)
@@ -52,6 +60,89 @@ def checkout(name: str, project: Dict[str, str]) -> bool:
     print(f"→ {name}: cloning {project['url']}")
     result = subprocess.run(["git", "clone", project["url"], str(target)], check=False)
     return result.returncode == 0
+
+
+def _tool_status(command: str, minimum: str | None = None) -> tuple[bool, str]:
+    executable = shutil.which(command)
+    if not executable:
+        return False, "not found"
+    result = subprocess.run([executable, "--version"], capture_output=True, text=True, check=False)
+    detail = (result.stdout or result.stderr).strip().splitlines()
+    version = detail[0] if detail else "available"
+    return result.returncode == 0, f"{version}{f' (need {minimum})' if minimum else ''}"
+
+
+def _has_local_token(root: Path) -> bool:
+    if os.environ.get("SPECKLE_TOKEN"):
+        return True
+    local = root / "mise.local.toml"
+    if not local.exists():
+        return False
+    try:
+        # Report presence only. Never parse, print or return the secret value.
+        return "SPECKLE_TOKEN" in local.read_text(encoding="utf-8")
+    except OSError:
+        return False
+
+
+def doctor(
+    projects: Dict[str, Dict[str, str]],
+    root: Path = ROOT,
+    projects_dir: Path = PROJECTS,
+) -> bool:
+    """Report local readiness without changing files or contacting a server."""
+    checks: list[tuple[str, bool, str, bool]] = []
+    git_ok, git_detail = _tool_status("git")
+    checks.append(("Git", git_ok, git_detail, True))
+    python_ok = sys.version_info >= (3, 8)
+    checks.append(("Python", python_ok, f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro} (need 3.8+)", True))
+    node_ok, node_detail = _tool_status("node", "20+")
+    checks.append(("Node", node_ok, node_detail, False))
+    mise_ok, mise_detail = _tool_status("mise")
+    checks.append(("mise", mise_ok, mise_detail, False))
+
+    for name in ANALYSIS_FOUNDATIONS:
+        target = projects_dir / projects[name]["directory"]
+        ready = (target / ".git").exists()
+        detail = str(target.relative_to(root)) if ready else "not checked out"
+        checks.append((name, ready, detail, True))
+
+    mcp = projects_dir / "fieldkit-admin-mcp"
+    mcp_checkout = (mcp / ".git").exists()
+    mcp_built = (mcp / "dist" / "index.js").exists()
+    mcp_dependencies = (mcp / "node_modules").is_dir()
+    token_configured = _has_local_token(root)
+    checks.extend(
+        [
+            ("FieldKit MCP checkout", mcp_checkout, "present" if mcp_checkout else "optional: not present", False),
+            ("FieldKit MCP dependencies", mcp_dependencies, "present" if mcp_dependencies else "not installed", False),
+            ("FieldKit MCP build", mcp_built, "dist/index.js present" if mcp_built else "not built", False),
+            ("Speckle token", token_configured, "configured (value hidden)" if token_configured else "not configured", False),
+        ]
+    )
+
+    required_ok = True
+    for label, ok, detail, required in checks:
+        marker = "✓" if ok else "✗" if required else "·"
+        suffix = "" if required else " [optional]"
+        print(f"{marker} {label}{suffix}: {detail}")
+        if required and not ok:
+            required_ok = False
+    print("\nDoctor is read-only. Optional checks become necessary only for routes that use them.")
+    return required_ok
+
+
+def setup(
+    projects: Dict[str, Dict[str, str]],
+    root: Path = ROOT,
+    projects_dir: Path = PROJECTS,
+) -> bool:
+    """Install only missing analysis foundations, then run the read-only doctor."""
+    projects_dir.mkdir(exist_ok=True)
+    checked_out = all(
+        checkout(name, projects[name], projects_dir) for name in ANALYSIS_FOUNDATIONS
+    )
+    return checked_out and doctor(projects, root=root, projects_dir=projects_dir)
 
 
 def main() -> int:
@@ -65,6 +156,11 @@ def main() -> int:
     get.add_argument("names", nargs="*", metavar="PROJECT")
     get.add_argument("--group", choices=groups, help="check out a named project group")
     get.add_argument("--core", action="store_true", help="check out the stable core group")
+    sub.add_parser(
+        "setup",
+        help="check out the minimum Bundle/SDK/docs sources for model-data investigation, then run doctor",
+    )
+    sub.add_parser("doctor", help="report local readiness without changing anything")
     args = parser.parse_args()
 
     if args.command == "list":
@@ -73,6 +169,10 @@ def main() -> int:
     if args.command == "resolve":
         print("\n".join(groups[args.group]))
         return 0
+    if args.command == "doctor":
+        return 0 if doctor(projects) else 1
+    if args.command == "setup":
+        return 0 if setup(projects) else 1
     unknown = set(args.names) - set(projects)
     if unknown:
         get.error(f"unknown projects: {', '.join(sorted(unknown))}")

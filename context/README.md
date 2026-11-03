@@ -19,3 +19,8 @@ truth.
 These maps intentionally contain no internal repository names, endpoints,
 credentials or private architecture.
 
+For an evidenced model-data question, use
+[`ask-speckle`](../.agents/skills/ask-speckle/SKILL.md). It explains when to use these
+sources together and when to stop rather than force a property query to answer
+a relationship, geometry or practice question.
+

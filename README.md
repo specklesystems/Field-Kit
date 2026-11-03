@@ -15,19 +15,42 @@ inspect and test what an agent makes with them.
 
 ## Start here
 
-You need Git, Python 3.8 or newer, and one supported coding agent.
+You need Git and one supported coding agent. Python 3.8 or newer enables the
+extended FieldKit setup, readiness report and analysis helpers, but is not
+required for the minimal workshop setup.
+
+For the workshop's minimal PowerShell, Command Prompt and bash/zsh commands,
+including agent skill discovery, use the
+[`workshop quick start`](docs/workshop-quick-start.md). It does not require
+Python.
 
 ```sh
 git clone https://github.com/specklesystems/Field-Kit.git
 cd Field-Kit
-python3 tools/fieldkit.py list
-python3 tools/fieldkit.py checkout bundle-spec python-sdk docs
+python3 tools/fieldkit.py setup
+```
+
+`setup` safely checks out the minimum public analysis foundations—Bundle
+specification, Python SDK and documentation—without updating or overwriting an
+existing child repository. It then runs the read-only readiness report. Run
+that report again at any time with:
+
+```sh
+python3 tools/fieldkit.py doctor
 ```
 
 Open the **Field-Kit folder** in Codex, Cursor, Copilot or Claude. Then try:
 
 > Read AGENTS.md and README.md. Orient me to this FieldKit, then explain the
 > bundle specification in plain language. Do not change anything yet.
+
+For a Speckle model-data question, begin with:
+
+> Read `AGENTS.md` and follow
+> `.agents/skills/ask-speckle/SKILL.md`. Start read-only and inspect the
+> actual model version and available dataset before choosing SQL, an SDK,
+> connector source or Automate. Do not invent missing classifications, units
+> or project rules.
 
 When you are ready to work:
 
@@ -44,7 +67,7 @@ projects inherit its environment when run with `mise exec`.
 
 `mise.local.toml` is still an ordinary plaintext file: “local” means it stays
 in your checkout, not that it is encrypted. See the detailed token and setup
-instructions in `projects/fieldkit-mcp/README.md` when that companion project
+instructions in `projects/fieldkit-admin-mcp/README.md` when that companion project
 is present.
 
 ## Things you can ask FieldKit to help with
@@ -163,7 +186,7 @@ safely answers the question. A personal script is not enough when other people
 depend on its answer.
 
 The canonical decision procedure is
-[`skills/choose-a-route/SKILL.md`](skills/choose-a-route/SKILL.md). Use it when
+[`.agents/skills/choose-a-route/SKILL.md`](.agents/skills/choose-a-route/SKILL.md). Use it when
 the route is unclear, or when the work will be shared, repeated, automated,
 write data, or inform a consequential decision.
 
@@ -176,8 +199,9 @@ or judgement. A harness places the useful material around it:
 Field-Kit/                  ← the parent harness (this Git repository)
 ├── AGENTS.md               ← instructions every task should inherit
 ├── fieldkit.json           ← catalogue of approved public projects
+├── analyses/               ← repeatable queries, notebooks and evidence
 ├── context/                ← short maps of those projects
-├── skills/                 ← public, portable ways of working
+├── .agents/skills/         ← discoverable ASK, BUILD and DELEGATE skills
 ├── practice-packs/         ← scoped organisation/project rules
 ├── personal/               ← your private, uncommitted material
 └── projects/               ← independent child Git repositories
@@ -265,8 +289,9 @@ Think from broad to specific:
 2. **Project instructions** — a child repository may have its own
    `AGENTS.md`, README or contributor guide. The nearer instructions describe
    that codebase and should win when they do not conflict with safety.
-3. **Ways-of-working skills** — [`skills/`](skills/README.md) contains public,
-   portable procedures for how an agent approaches work.
+3. **Ways-of-working skills** — [`.agents/skills/`](.agents/skills/) contains
+   public, portable procedures; [`skills/README.md`](skills/README.md) is their
+   human-readable catalogue.
 4. **Practice packs** — [`practice-packs/`](practice-packs/README.md) contains
    separately owned rules for what a correct result means in an organisation,
    project or jurisdiction.
@@ -295,7 +320,20 @@ Real practice packs are independent child repositories, often private, under
 checkouts. Start from [`templates/practice-pack/`](templates/practice-pack/),
 then give the pack a named owner, scope, authority, version and evidence.
 
-## Four useful skills to begin with
+## Three actions, plus four supporting skills
+
+ASK, BUILD and DELEGATE are verbs, not job identities or stages. A participant
+can begin and finish in any one pillar.
+
+- **`ask-speckle`** — answer a bounded data, model-version or connector
+  capability question with evidence, confidence and explicit gaps.
+- **`build-with-speckle`** — create a bounded analysis, script or integration
+  artefact with safe local data handling and observable tests.
+- **`delegate-with-speckle`** — use Speckle Automate as the available-today
+  route for defined version-triggered work, or clearly label agent workflows
+  as supervised/local or preview; always define inputs, failures and ownership.
+
+The supporting skills help whichever action is in play:
 
 - **`orient-me`** — map a repository before proposing changes.
 - **`shape-a-task`** — turn an outcome into a small, testable task.
@@ -304,7 +342,7 @@ then give the pack a named owner, scope, authority, version and evidence.
 
 Ask directly when your client does not discover skills automatically:
 
-> Follow `skills/orient-me/SKILL.md` for this task.
+> Follow `.agents/skills/orient-me/SKILL.md` for this task.
 
 See [client setup](docs/client-setup.md) for the deliberately conservative
 cross-client model.
@@ -345,6 +383,8 @@ repository: they have separate histories and separate destinations.
 - [Architecture](docs/architecture.md) — the parent/child model in more depth.
 - [Client setup](docs/client-setup.md) — how to use the common layer without
   pretending every agent behaves identically.
+- [Workshop quick start](docs/workshop-quick-start.md) — the exact on-screen
+  clone, child-repository and agent instructions.
 - [Safe working](docs/safe-working.md) — data, secrets and publication checks.
 - [Practice packs](practice-packs/README.md) — scoped organisation and project
   knowledge.

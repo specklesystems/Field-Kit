@@ -16,6 +16,10 @@
 !.env.example
 mise.local.toml
 mise.*.local.toml
+
+# Analysis extracts and generated evidence can contain customer model data.
+/analyses/*/data/
+/analyses/*/outputs/
 .DS_Store
 __pycache__/
 *.pyc

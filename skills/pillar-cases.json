@@ -1,0 +1,38 @@
+[
+  {
+    "prompt": "Which doors in this model version are missing a fire rating?",
+    "action": "ASK",
+    "skill": "ask-speckle",
+    "complete_when": "an evidenced answer or precise missing evidence is reported"
+  },
+  {
+    "prompt": "Does the current Revit connector preserve this parameter on send and receive?",
+    "action": "ASK",
+    "skill": "ask-speckle",
+    "complete_when": "each direction has evidence, confidence and unresolved runtime gaps"
+  },
+  {
+    "prompt": "Create a read-only corridor-width analysis and evidence table from this supplied threshold.",
+    "action": "BUILD",
+    "skill": "build-with-speckle",
+    "complete_when": "the bounded artefact reproduces the acceptance example and states unknowns"
+  },
+  {
+    "prompt": "Add support for this object in the public connector and test its conversion.",
+    "action": "BUILD",
+    "skill": "build-with-speckle",
+    "complete_when": "the owning repository contains a bounded tested change without deployment"
+  },
+  {
+    "prompt": "Whenever a new version arrives, run this defined check and publish a result.",
+    "action": "DELEGATE",
+    "skill": "delegate-with-speckle",
+    "complete_when": "the delegation contract and failure behaviour are tested; deployment remains explicit"
+  },
+  {
+    "prompt": "Give an agent approved tools and instructions to prepare this report on demand.",
+    "action": "DELEGATE",
+    "skill": "delegate-with-speckle",
+    "complete_when": "tool permissions, inputs, outputs, failures and ownership are explicit and tested"
+  }
+]

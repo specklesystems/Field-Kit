@@ -6,7 +6,17 @@ definition of correctness. Each skill has `kind: way-of-working` and
 `scope: general` in its `SKILL.md` so that distinction remains human-readable
 even when a client ignores custom metadata.
 
-FieldKit starts with four small skills:
+FieldKit starts with three independent actions:
+
+- `ask-speckle` — answer a bounded data, model-version or connector question
+  with evidence and explicit confidence.
+- `build-with-speckle` — create a bounded analysis, script or integration
+  artefact with safe data handling and observable tests.
+- `delegate-with-speckle` — use Speckle Automate for delegation available
+  today, while distinguishing supervised/local and preview agent workflows.
+
+They are verbs, not identities or a required progression. Four supporting
+skills can be used with any action:
 
 - `orient-me` — understand a repository before changing it.
 - `shape-a-task` — convert an outcome into a thin, testable task.

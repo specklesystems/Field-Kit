@@ -11,9 +11,17 @@ Speckle code. Treat its users as capable domain experts who may be new to code.
   behind jargon.
 - Inspect first. For non-trivial work, propose a short plan and a visible
   success check before implementation.
-- Use `skills/choose-a-route/SKILL.md` when the implementation route is unclear
+- Use `.agents/skills/choose-a-route/SKILL.md` when the implementation route is unclear
   or the result will be shared, repeated, automated, write data, or support a
   consequential decision. Small read-only experiments can take the fast path.
+- For an evidenced answer about Speckle data, versions or connector
+  capability, use `.agents/skills/ask-speckle/SKILL.md`.
+- For a bounded analysis, script or integration artefact, use
+  `.agents/skills/build-with-speckle/SKILL.md`.
+- For repeatable work performed on a user's behalf through Automate or an
+  agent/harness, use `.agents/skills/delegate-with-speckle/SKILL.md`.
+- ASK, BUILD and DELEGATE are independent actions, not identities or a
+  required progression. Use only the action the participant asked for.
 
 ## While working
 
@@ -37,7 +45,7 @@ Speckle code. Treat its users as capable domain experts who may be new to code.
 - Do not commit, push, publish, open a pull request or change external state
   unless the participant explicitly asks.
 
-Skills in `skills/` are reusable procedures. Read the relevant `SKILL.md` in
+Skills in `.agents/skills/` are reusable procedures. Read the relevant `SKILL.md` in
 full when a participant names it or the task clearly matches it. The
 `personal/` folder is private staging, not a promise of automatic discovery.
 

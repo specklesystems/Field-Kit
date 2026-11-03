@@ -1,0 +1,37 @@
+[
+  {
+    "prompt": "Count doors by level in this model version.",
+    "expected_route": "dataset-property-query",
+    "must_check": ["dataset availability", "property paths", "sample values"]
+  },
+  {
+    "prompt": "Find doors missing fire ratings.",
+    "expected_route": "dataset-property-query",
+    "must_preserve_statuses": ["missing", "ambiguous"]
+  },
+  {
+    "prompt": "Compare these two model versions.",
+    "expected_route": "dataset-version-comparison",
+    "must_check": ["stable identifier", "exact version IDs"]
+  },
+  {
+    "prompt": "Check corridor clear widths against a supplied 1.8 m threshold.",
+    "expected_route": "properties-first-then-geometry-if-needed",
+    "must_stop_if": ["width semantics unclear", "units absent", "corridor classification absent"]
+  },
+  {
+    "prompt": "Explain how this Revit parameter became Speckle data.",
+    "expected_route": "connector-source-and-docs",
+    "must_check": ["source application", "public connector", "conversion source"]
+  },
+  {
+    "prompt": "Run this proven check whenever a new version arrives.",
+    "expected_route": "automate-after-proven-calculation",
+    "must_check": ["existing calculation evidence", "Automate starter", "failure handling"]
+  },
+  {
+    "prompt": "Tell me the legally required corridor width for this project.",
+    "expected_route": "scoped-practice-or-authority-required",
+    "must_stop_if": ["jurisdiction unknown", "governing source absent", "practice pack out of scope"]
+  }
+]
