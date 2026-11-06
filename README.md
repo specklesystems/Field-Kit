@@ -13,6 +13,28 @@ inspect and test what an agent makes with them.
 > FieldKit is a harness, not an autopilot. It supplies context and guardrails;
 > you still choose the destination and decide whether the result is sound.
 
+## A starting harness, not a lasting dependency
+
+FieldKit was assembled as a temporary working harness for the Build with Speckle
+workshop. It gives participants and their agents shared context, documented
+resources, reusable skills and tested ways of working without requiring everyone
+to construct that environment from scratch.
+
+**You are welcome to keep using FieldKit, fork it or adapt it, but you do not
+need to keep FieldKit to continue your work.** It is a starting point rather
+than a prescribed development environment or a required dependency for the
+applications, analyses and workflows you make.
+
+Take useful instructions and patterns into your own repositories, tools and
+organisational practices. Keep any actual runtime requirements your solution
+uses, such as Speckle APIs or SDKs, authentication, data access and task
+configuration, and test it outside the FieldKit workspace before assuming it
+runs independently. Agent instructions and skills may also need to be copied
+or adapted if you want the same agent-assisted development behaviour elsewhere.
+
+The goal is to make the scaffolding disposable while the knowledge and the
+things you build endure.
+
 ## Start here
 
 You need Git and one supported coding agent. Python 3.8 or newer enables the
