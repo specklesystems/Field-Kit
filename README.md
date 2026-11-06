@@ -35,6 +35,11 @@ or adapted if you want the same agent-assisted development behaviour elsewhere.
 The goal is to make the scaffolding disposable while the knowledge and the
 things you build endure.
 
+## Workshop presentations
+
+- [Build with Speckle workshop slides (Figma)](https://www.figma.com/slides/DMOQs7A7rlh31X3O3Xz4VR) — the deck shared with participants.
+- [As Built with Speckle keynote address](https://speckle.systems/speckle-events/as-built-with-speckle-keynote-address/) — the event keynote for additional context.
+
 ## Start here
 
 You need Git and one supported coding agent. Python 3.8 or newer enables the
